@@ -8,28 +8,28 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Node.js
+      - name: Setup Node.js 18
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
-      - name: Install Capacitor & Build App
+      - name: Initialize and Build App
         run: |
+          # إنشاء ملف package.json وتجهيز البيئة
           npm init -y
-          npm install @capacitor/core @capacitor/cli
-          npx cap init "Daftar App" "com.ostoraazoozy.daftar" --web-dir=.
-          npm install @capacitor/android
+          npm install @capacitor/core @capacitor/cli @capacitor/android
+          
+          # تهيئة مشروع كاباسيتور برمجياً بالكامل
+          npx cap init "Daftar App" "com.ostoraazoozy.daftar" --web-dir=. --bundled-web-runtime=false
+          
+          # إضافة منصة أندرويد وإنشاء المجلدات اللازمة
           npx cap add android
-          
-          # قبول تراخيص أندرويد تلقائياً لمنع توقف البناء
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
-          
           npx cap sync android
 
       - name: Build Android APK
