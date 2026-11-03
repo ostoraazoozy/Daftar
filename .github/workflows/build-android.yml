@@ -14,27 +14,27 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Node.js 18
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
-      - name: Initialize and Build App
+      - name: Initialize App Config
         run: |
-          # إنشاء ملف package.json وتجهيز البيئة
-          npm init -y
+          echo '{"name": "daftar", "version": "1.0.0"}' > package.json
           npm install @capacitor/core @capacitor/cli @capacitor/android
-          
-          # تهيئة مشروع كاباسيتور برمجياً بالكامل
-          npx cap init "Daftar App" "com.ostoraazoozy.daftar" --web-dir=. --bundled-web-runtime=false
-          
-          # إضافة منصة أندرويد وإنشاء المجلدات اللازمة
+          npx cap init "Daftar App" "com.ostoraazoozy.daftar" --web-dir=. --confirm
+
+      - name: Add Android Platform
+        run: |
           npx cap add android
+          # أمر حاسم للموافقة الصامتة والتلقائية على تراخيص Android SDK لمنع التعليق
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
           npx cap sync android
 
       - name: Build Android APK
         run: |
-          cd android && ./gradlew assembleDebug
+          cd android && ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK Package
         uses: actions/upload-artifact@v4
