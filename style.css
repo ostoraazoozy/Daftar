@@ -1,0 +1,1763 @@
+/* ===================================== */
+/* 📌 القسم 1: المتغيرات والثيمات (Root Variables & Themes) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 1.1 متغيرات التوهج والألوان الأساسية */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 1.1.1 ألوان التوهج اللوني (Glow Variables) */
+/* -------------------------------------- */
+:root {
+    --glow-gold: rgba(217, 119, 6, 0.55);
+    --glow-green: rgba(34, 197, 94, 0.55);
+    --glow-blue: rgba(59, 130, 246, 0.55);
+    --glow-red: rgba(239, 68, 68, 0.55);
+    --glow-teal: rgba(13, 148, 136, 0.55);
+    --glow-purple: rgba(139, 92, 246, 0.55);
+    --glow-orange: rgba(249, 115, 22, 0.55);
+}
+
+/* -------------------------------------- */
+/* 1.1.2 ألوان الثيم الداكن العنابي لدفتر الديون */
+/* -------------------------------------- */
+:root {
+    --bg: #15101f;
+    --card: #221b30;
+    --input: #2b243d;
+    --border: #3d3450;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --header-bg: #6b1010;
+    --glow-1: rgba(99, 102, 241, 0.15);
+    --glow-2: rgba(168, 85, 247, 0.12);
+    --glow-3: rgba(236, 72, 153, 0.08);
+    --glow-4: rgba(34, 197, 94, 0.08);
+    --c-green: #22c55e;
+    --c-gold: #f59e0b;
+    --c-teal: #06b6d4;
+    --c-orange: #f97316;
+    --c-purple: #a855f7;
+    --c-indigo: #6366f1;
+    --c-emerald: #10b981;
+    --c-pink: #ec4899;
+    --c-red: #ef4444;
+    --c-blue: #3b82f6;
+    --theme-color: var(--c-red);
+}
+
+/* ══════════════════════ */
+/* 1.2 ألوان الثيم الفاتح النهاري (Light Theme) */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 1.2.1 تخصيص التباين النهاري */
+/* -------------------------------------- */
+html.light-theme {
+    --bg: #f0eef5;
+    --card: #ffffff;
+    --input: #f4f2f8;
+    --border: #e5e1ee; 
+    --text: #15101f;
+    --muted: #6b7280;
+    --header-bg: #801818;
+}
+
+
+/* ===================================== */
+/* 📌 القسم 2: ضبط الصفحة والجسم العام (Global Reset & Body) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 2.1 إعادة الضبط والخط الافتراضي */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 2.1.1 توحيد الصندوق والخطوط */
+/* -------------------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+html {
+    visibility: visible;
+}
+
+/* ══════════════════════ */
+/* 2.2 خلفية الصفحة والتوهجات الشعاعية */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 2.2.1 إضاءات الخلفية الشعاعية */
+/* -------------------------------------- */
+body {
+    background-color: var(--bg);
+    background-image: 
+        radial-gradient(circle at 10% 10%, var(--glow-1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 20%, var(--glow-2) 0%, transparent 40%),
+        radial-gradient(circle at 20% 90%, var(--glow-3) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, var(--glow-4) 0%, transparent 40%);
+    color: var(--text);
+    min-height: 100vh;
+    position: relative;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* -------------------------------------- */
+/* 2.2.2 حماية الحقول من القص على الموبايل */
+/* -------------------------------------- */
+.flex-between input,
+.flex-between select {
+    min-width: 0;
+}
+
+
+/* ===================================== */
+/* 📌 القسم 3: الهيدر العنابي لدفتر الديون (Top Header) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 3.1 شريط الهيدر العلوي المثبت */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 3.1.1 حاوية الهيدر والمؤثر الزجاجي */
+/* -------------------------------------- */
+.top-header { 
+    background: #6b1010;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    min-width: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ══════════════════════ */
+/* 3.2 عناصر وأزرار الهيدر */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 3.2.1 زر القائمة والشعار واسم البرنامج */
+/* -------------------------------------- */
+.menu-btn { 
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.site-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    min-width: 0;
+}
+
+.site-logo i {
+    color: #fff;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.logo-text h2 {
+    font-size: 1.15rem;
+    color: #fff;
+    font-weight: 800;
+}
+
+/* -------------------------------------- */
+/* 3.2.2 زر تبديل الثيم */
+/* -------------------------------------- */
+.theme-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    padding: 0;
+    flex-shrink: 0;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.theme-btn:active {
+    transform: scale(0.92);
+}
+
+
+/* ===================================== */
+/* 📌 القسم 4: القائمة الجانبية لبرنامج الديون (Sidebar) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 4.1 التراكب وجسم القائمة */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 4.1.1 خلفية التعتيم والتثبيت الجانبي */
+/* -------------------------------------- */
+#sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    z-index: 100;
+}
+
+#sidebar { 
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100%;
+    background: #6b1010;
+    z-index: 101;
+    transition: right 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s;
+    border-left: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    color: #fff;
+}
+
+#sidebar.open {
+    right: 0;
+}
+
+#sidebar-overlay.show {
+    display: block;
+}
+
+/* ══════════════════════ */
+/* 4.2 ترويسة المستخدم وروابط التقارير */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 4.2.1 ترويسة المستخدم وصورة البروفايل */
+/* -------------------------------------- */
+.sidebar-header {
+    padding: 90px 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.sidebar-header i {
+    font-size: 3rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 10px;
+}
+
+.sidebar-header h3 {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.sidebar-header span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.sidebar-header img.profile-img-sidebar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid rgba(255,255,255,0.3);
+}
+
+/* -------------------------------------- */
+/* 4.2.2 روابط تقارير الديون والتنقل */
+/* -------------------------------------- */
+.sidebar-nav {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-bottom: 120px;
+}
+
+.sidebar-nav a,
+.sidebar-label {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.sidebar-nav a:hover,
+.sidebar-label:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.sidebar-nav a i,
+.sidebar-label i {
+    margin-left: 10px;
+    color: rgba(255,255,255,0.8);
+    width: 20px;
+    text-align: center;
+}
+
+
+/* ===================================== */
+/* 📌 القسم 5: تبويبات برنامج الديون (Debts Tabs Nav) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 5.1 شريط أزرار التبويبات الأربعة */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 5.1.1 حاوية التبويبات الأفقية */
+/* -------------------------------------- */
+.debt-tabs-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    -webkit-overflow-scrolling: touch;
+}
+
+.debt-tabs-nav::-webkit-scrollbar {
+    height: 4px;
+}
+
+.debt-tabs-nav::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+/* -------------------------------------- */
+/* 5.1.2 أزرار التبويب الفردية وحالات التفعيل */
+/* -------------------------------------- */
+.debt-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.debt-tab-btn:hover {
+    color: var(--text);
+    border-color: rgba(201, 167, 90, 0.6);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.debt-tab-btn.active {
+    background: linear-gradient(135deg, rgba(201, 167, 90, 0.22), rgba(201, 167, 90, 0.08));
+    border-color: var(--c-gold);
+    color: var(--c-gold);
+    box-shadow: 0 4px 14px rgba(201, 167, 90, 0.25);
+}
+
+.debt-tab-btn.debt-tab-urgent.active {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(239, 68, 68, 0.08));
+    border-color: #ef4444;
+    color: #ef4444;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+}
+
+/* -------------------------------------- */
+/* 5.1.3 بادجات العدادات على التبويبات */
+/* -------------------------------------- */
+.debt-tab-badge {
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text);
+    font-weight: 800;
+}
+
+.debt-tab-btn.active .debt-tab-badge {
+    background: var(--c-gold);
+    color: #000;
+}
+
+.debt-tab-badge.danger {
+    background: rgba(239, 68, 68, 0.25);
+    color: #ef4444;
+}
+
+.debt-tab-btn.active .debt-tab-badge.danger {
+    background: #ef4444;
+    color: #fff;
+}
+
+/* ══════════════════════ */
+/* 5.2 لوحات محتوى التبويبات وانتقالاتها */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 5.2.1 إخفاء وإظهار لوحات التبويب بالحركة */
+/* -------------------------------------- */
+.debt-tab-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(8px);
+    will-change: opacity, transform;
+}
+
+.debt-tab-panel.active {
+    display: block;
+    animation: debtPanelFadeSlide 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes debtPanelFadeSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===================================== */
+/* 📌 القسم 6: نظام المحاسبة وكشف الحسابات (Ledger System) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 6.1 قائمة العملاء والأرصدة */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 6.1.1 صفوف وبطاقات كشف الحسابات */
+/* -------------------------------------- */
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 10px 20px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.card h4 {
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    color: var(--text);
+}
+
+.ledger-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ledger-row {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.quick-add-box {
+    width: 45px;
+    min-width: 45px;
+    background: var(--c-green) !important;
+    color: #fff !important; 
+    border: none !important;
+    border-radius: 10px !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: none !important;
+    padding: 0;
+}
+
+.ledger-item {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.ledger-item:hover {
+    border-color: var(--c-blue);
+    background: var(--bg);
+}
+
+.ledger-info {
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    min-width: 0;
+}
+
+.ledger-info strong {
+    font-size: 1rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.ledger-bal {
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    pointer-events: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.ledger-bal.pos { color: var(--c-green); }
+.ledger-bal.neg { color: var(--c-red); }
+.ledger-bal.zero { color: var(--muted); }
+
+.ledger-item.archived-item {
+    opacity: 0.55;
+}
+
+.notif-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--c-red);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 5px var(--c-red);
+    animation: pulse 1.5s infinite;
+}
+
+/* -------------------------------------- */
+/* 6.1.2 أشرطة التصفية وتبويب الأرشيف */
+/* -------------------------------------- */
+.filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.filter-bar select {
+    margin: 0;
+    font-size: 0.85rem;
+    padding: 8px;
+}
+
+.archive-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.archive-tabs .btn-sm {
+    flex: 1;
+    padding: 9px;
+    background: var(--input);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.archive-tabs .btn-sm.active {
+    background: var(--c-blue);
+    color: #fff;
+    border-color: var(--c-blue);
+}
+
+.search-clear-btn {
+    display: none;
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--muted);
+    padding: 0;
+    font-size: 0.7rem;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.has-clear input {
+    padding-left: 38px !important;
+}
+
+/* ══════════════════════ */
+/* 6.2 جدول حركات المعاملات وتفاصيل الحساب */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 6.2.1 عنوان اسم العميل في كشف الحساب */
+/* -------------------------------------- */
+#ledger-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    word-break: break-word;
+}
+
+/* -------------------------------------- */
+/* 6.2.2 جدول حركة الحساب (Ledger Table) */
+/* -------------------------------------- */
+.tx-table {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tx-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-right: 4px solid var(--border);
+    cursor: pointer;
+}
+
+.tx-row.out { border-right-color: var(--c-red); }
+.tx-row.in { border-right-color: var(--c-green); }
+
+.tx-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.tx-info small {
+    color: var(--muted);
+    font-size: 0.75rem;
+    margin-bottom: 2px;
+}
+
+.tx-info span {
+    font-size: 0.9rem;
+}
+
+.tx-val-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.tx-val {
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tx-val.out { color: var(--c-red); }
+.tx-val.in { color: var(--c-green); }
+
+.tx-running {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+#ledger-balance-mini {
+    text-align: center;
+    background: var(--input);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.ledger-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.ledger-alert.red {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: var(--c-red);
+}
+
+.ledger-alert.gold {
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--c-gold);
+}
+
+
+/* ===================================== */
+/* 📌 القسم 7: شبكات الإحصائيات والرسم الدائري (Stats & Donut) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 7.1 شبكات الإجماليات والإحصائيات المصغرة */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 7.1.1 صناديق الإجماليات الثلاثية */
+/* -------------------------------------- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.stat {
+    background: var(--input);
+    padding: 15px 10px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.stat span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 5px;
+}
+
+.stat strong {
+    font-size: 1.1rem;
+}
+
+.mini-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.mini-stat {
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 6px;
+    text-align: center;
+}
+
+.mini-stat i {
+    color: var(--c-gold);
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.mini-stat span {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-bottom: 3px;
+}
+
+.mini-stat strong {
+    font-size: 0.85rem;
+}
+
+.mini-stat.clickable {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.mini-stat.clickable:active {
+    transform: scale(0.96);
+}
+
+/* ══════════════════════ */
+/* 7.2 الرسم البياني الدائري لنسبة الديون (Donut Chart) */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 7.2.1 بادجات وحاويات الرسم الدائري */
+/* -------------------------------------- */
+.debt-donut-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    background: var(--input);
+    border: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--text);
+}
+
+/* -------------------------------------- */
+/* 7.2.2 زر ومودال نسبة السداد والتحصيل للعميل الفردي */
+/* -------------------------------------- */
+.customer-ratio-btn {
+    font-size: 1.5rem !important;
+    color: var(--c-gold) !important;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.customer-ratio-btn:hover {
+    transform: scale(1.18);
+    color: #eab308 !important;
+}
+
+.customer-ratio-box {
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    margin-top: 12px;
+}
+
+
+/* ===================================== */
+/* 📌 القسم 8: أعمار الديون والديون المتعثرة (Aging & Defaulted) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 8.1 شبكة وبطاقات الفئات العمرية للأعمار (شبكة ثنائية 2x2 على الموبايل) */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 8.1.1 حاوية الشبكة الثنائية للبطاقات المربعة */
+/* -------------------------------------- */
+.debt-aging-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    margin-top: 10px;
+}
+
+/* -------------------------------------- */
+/* 8.1.2 بطاقات الفئات المربعة المدمجة */
+/* -------------------------------------- */
+.aging-bucket-card {
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 8px !important;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.aging-bucket-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.aging-bucket-card.active {
+    border-color: var(--c-gold);
+    box-shadow: 0 0 0 2px var(--c-gold), 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.aging-bucket-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3px !important;
+}
+
+.aging-bucket-title {
+    font-size: 0.72rem !important;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px !important;
+}
+
+.aging-bucket-count {
+    font-size: 0.62rem !important;
+    padding: 1px 5px !important;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+}
+
+.aging-bucket-amount {
+    font-size: 0.95rem !important;
+    font-weight: 800;
+    margin: 3px 0 5px !important;
+    display: block;
+}
+
+.aging-bar-track {
+    height: 5px !important;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.aging-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.aging-drill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--input);
+    margin-bottom: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.15s ease;
+}
+
+.aging-drill-row:hover {
+    transform: translateX(-4px);
+    border-color: var(--c-gold);
+}
+
+/* ══════════════════════ */
+/* 8.2 بطاقات الديون المتعثرة وزر التحصيل العاجل */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 8.2.1 بطاقة العميل المتعثر المنظمة وتأثيراتها */
+/* -------------------------------------- */
+.defaulted-debt-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--input);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    border-right: 4px solid #ef4444;
+    border-radius: 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 12px;
+}
+
+.defaulted-debt-card:hover {
+    transform: translateX(-4px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+}
+
+/* -------------------------------------- */
+/* 8.2.2 عناصر بطاقة المتعثر: الرأس، البيانات، والتذييل */
+/* -------------------------------------- */
+.defaulted-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.defaulted-card-name {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--text);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.defaulted-card-name:hover {
+    color: var(--c-gold);
+}
+
+.defaulted-card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: rgba(239, 68, 68, 0.16);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.defaulted-card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.defaulted-card-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.defaulted-card-meta-item i {
+    color: var(--c-gold);
+    font-size: 0.8rem;
+}
+
+.defaulted-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 4px;
+    flex-wrap: wrap;
+}
+
+.defaulted-card-amount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+}
+
+.defaulted-card-amount-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.defaulted-card-amount-value {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ef4444;
+    letter-spacing: -0.3px;
+}
+
+.defaulted-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-urgent-collect {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 0.78rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-urgent-collect:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(34, 197, 94, 0.5);
+}
+
+.btn-defaulted-ledger {
+    background: var(--surface, #1e293b);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-defaulted-ledger:hover {
+    background: var(--card);
+    border-color: var(--c-gold);
+    color: var(--c-gold);
+}
+
+
+/* ===================================== */
+/* 📌 القسم 9: النوافذ المنبثقة والآلة الحاسبة والأدوات (Modals & Tools) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 9.1 النوافذ المنبثقة والحقول والأزرار */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 9.1.1 المودالات وأزرار الإغلاق وترتيب الطبقات (Z-Index Stacking) */
+/* -------------------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal#profile-modal,
+.modal#pin-modal {
+    z-index: 2500;
+}
+
+.modal#confirm-modal {
+    z-index: 5000;
+}
+
+.modal-content {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    cursor: default;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--c-red);
+}
+
+/* -------------------------------------- */
+/* 9.1.2 الحقول والأزرار الموحدة */
+/* -------------------------------------- */
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Cairo';
+    font-size: 1rem;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--c-blue);
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.2), inset 0 -2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.15s, opacity 0.15s;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+.full-btn {
+    width: 100%;
+    background: var(--c-blue);
+}
+
+.full-btn.green { background: var(--c-green); }
+.full-btn.red { background: var(--c-red); }
+.full-btn.gold { background: var(--c-gold); }
+
+.btn-sm {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-sm.green { background: var(--c-green); }
+.btn-sm.blue { background: var(--c-blue); }
+.btn-sm.red { background: var(--c-red); }
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sub-text {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.radio-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 12px;
+    background: var(--input);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    flex: 1;
+    justify-content: center;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.radio-group input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--c-blue);
+    margin: 0;
+    cursor: pointer;
+}
+
+/* -------------------------------------- */
+/* 9.1.3 عناصر رفع صورة الملف الشخصي */
+/* -------------------------------------- */
+.profile-pic-upload {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-preview {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    background: var(--input);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 3px solid var(--c-blue);
+}
+
+.profile-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-preview i {
+    font-size: 4rem;
+    color: var(--muted);
+}
+
+/* -------------------------------------- */
+/* 9.1.4 مفتاح التبديل المخصص (Switch) */
+/* -------------------------------------- */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--c-green);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* ══════════════════════ */
+/* 9.2 الآلة الحاسبة وأشرطة التراجع والرسوم البيانية */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 9.2.1 شبكة الآلة الحاسبة */
+/* -------------------------------------- */
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.calc-grid button {
+    padding: 15px;
+    font-size: 1.2rem;
+    background: var(--input);
+    color: var(--text);
+    border-radius: 8px;
+}
+
+/* -------------------------------------- */
+/* 9.2.2 شريط التراجع السريع المحاسبي */
+/* -------------------------------------- */
+.undo-toast {
+    position: fixed;
+    bottom: 130px;
+    right: 50%;
+    transform: translateX(50%);
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 18px;
+    border-radius: 12px;
+    display: none;
+    align-items: center;
+    gap: 15px;
+    z-index: 3000;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    font-size: 0.85rem;
+    max-width: 92%;
+}
+
+.undo-toast.show {
+    display: flex;
+    animation: slideUpToast 0.3s;
+}
+
+.undo-toast button {
+    background: var(--c-gold);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+    flex-shrink: 0;
+}
+
+/* -------------------------------------- */
+/* 9.2.3 رسم بياني لأعلى المديونيات */
+/* -------------------------------------- */
+.chart-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3px 8px;
+    margin-bottom: 10px;
+}
+
+.chart-name {
+    width: 100%;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text);
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.45;
+    text-align: right;
+}
+
+.chart-bar-wrap {
+    flex: 1;
+    background: var(--bg);
+    border-radius: 6px;
+    height: 16px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.chart-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #b91c1c, var(--c-red));
+    border-radius: 6px;
+    min-width: 4px;
+    transition: width 0.5s;
+}
+
+.chart-val {
+    flex-shrink: 0;
+    min-width: 90px;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.image-viewer-content {
+    max-width: 95%;
+    width: auto;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.image-viewer-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 10px;
+}
+
+
+/* ===================================== */
+/* 📌 القسم 10: الزر العائم للمعاملات (FAB) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 10.1 الزر العائم القابل للسحب */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 10.1.1 تصميم وحركة الزر العائم (+) */
+/* -------------------------------------- */
+.fab-btn { 
+    position: fixed;
+    bottom: 60px;
+    right: 20px; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; 
+    background: var(--c-green);
+    color: #fff;
+    font-size: 1.5rem;
+    border: none; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: grab;
+    z-index: 1000; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    touch-action: none; 
+}
+
+.fab-btn:active {
+    cursor: grabbing;
+}
+
+.fab-btn:hover {
+    transform: scale(1.1);
+}
+
+
+/* ===================================== */
+/* 📌 القسم 11: التجاوب والشاشات الكبيرة المدمج (Responsive Media Queries) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 11.1 شاشات الديسكتوب والكمبيوتر (Desktop >= 1100px) */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 11.1.1 توسيع الحاوية وشبكة الحسابات */
+/* -------------------------------------- */
+@media (min-width: 1100px) {
+    .main-container {
+        max-width: 1300px;
+        padding: 95px 30px 30px;
+    }
+
+    .main-container .card {
+        padding: 22px 24px;
+        border-radius: 18px;
+    }
+
+    .debt-aging-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 14px !important;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .ledger-item {
+        padding: 12px 18px;
+    }
+
+    .tx-row {
+        padding: 14px 18px;
+    }
+
+    .modal-content {
+        max-width: 550px;
+        padding: 32px;
+    }
+
+    #sidebar {
+        width: 300px;
+        right: -300px;
+    }
+
+    #sidebar.open {
+        right: 0;
+    }
+
+    #profile-modal .modal-content {
+        max-width: 640px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 14px;
+    }
+
+    #profile-modal .modal-content > h3,
+    #profile-modal .profile-pic-upload,
+    #profile-modal #prof-name,
+    #profile-modal #prof-address,
+    #profile-modal #prof-bio,
+    #profile-modal .full-btn {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ══════════════════════ */
+/* 11.2 شاشات الأجهزة اللوحية والتابلت (Tablet 768px - 1099px) */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 11.2.1 ضبط المساحات للأجهزة اللوحية */
+/* -------------------------------------- */
+@media (min-width: 768px) and (max-width: 1099px) {
+    .main-container {
+        max-width: 900px;
+        padding: 85px 20px 25px;
+    }
+
+    .debt-aging-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .modal-content {
+        max-width: 500px;
+    }
+}
+
+/* ══════════════════════ */
+/* 11.3 الهواتف والشاشات الصغيرة (< 640px) */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 11.3.1 ضبط أحجام الهيدر والتبويبات على الموبايل */
+/* -------------------------------------- */
+@media (max-width: 640px) {
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .stat {
+        padding: 10px 4px;
+    }
+
+    .stat strong {
+        font-size: 0.95rem;
+    }
+
+    .debt-tab-btn {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+
+/* ===================================== */
+/* 📌 القسم 12: التأثيرات الحركية العامة (Keyframe Animations) */
+/* ===================================== */
+
+/* ══════════════════════ */
+/* 12.1 حركات الظهور والانزلاق والنبض */
+/* ══════════════════════ */
+
+/* -------------------------------------- */
+/* 12.1.1 ظهور العناصر بتدرج رأسي (Fade In) */
+/* -------------------------------------- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -------------------------------------- */
+/* 12.1.2 نبضات التنبيه المكررة (Pulse) */
+/* -------------------------------------- */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* -------------------------------------- */
+/* 12.1.3 صعود شريط التراجع من الأسفل (Slide Up Toast) */
+/* -------------------------------------- */
+@keyframes slideUpToast {
+    from {
+        transform: translate(50%, 20px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(50%, 0);
+        opacity: 1;
+    }
+}
