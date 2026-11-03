@@ -8,6 +8,12 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -20,6 +26,10 @@ jobs:
           npx cap init "Daftar App" "com.ostoraazoozy.daftar" --web-dir=.
           npm install @capacitor/android
           npx cap add android
+          
+          # قبول تراخيص أندرويد تلقائياً لمنع توقف البناء
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          
           npx cap sync android
 
       - name: Build Android APK
