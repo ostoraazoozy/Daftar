@@ -14,27 +14,52 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Clone Webview Template
+      - name: Create Android Project From Scratch
         run: |
-          # سحب مشروع أندرويد استوديو جاهز ومفتوح المصدر مخصص للـ WebView
-          git clone https://github.com template
+          # إنشاء هيكل مشروع أندرويد مصغر ومباشر
+          mkdir -p app/src/main/assets
+          mkdir -p app/src/main/java/com/example/webview
+          mkdir -p app/src/main/res/layout
           
-          # نقل ملفات كودك الثلاثة إلى مجلد الأصول داخل تطبيق أندرويد
-          rm -rf template/app/src/main/assets/*
-          cp index.html template/app/src/main/assets/
-          cp script.js template/app/src/main/assets/ || true
-          cp style.css template/app/src/main/assets/ || true
+          # نقل ملفات كودك
+          cp index.html app/src/main/assets/
+          cp script.js app/src/main/assets/ || true
+          cp style.css app/src/main/assets/ || true
+          
+          # إنشاء ملف الـ MainActivity بالجافا لتشغيل الـ WebView
+          cat << 'EOF' > app/src/main/java/com/example/webview/MainActivity.java
+          package com.example.webview;
+          import android.os.Bundle;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+          import androidx.appcompat.app.AppCompatActivity;
+          public class MainActivity extends AppCompatActivity {
+              @Override
+              protected void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+                  WebView webView = new WebView(this);
+                  webView.getSettings().setJavaScriptEnabled(true);
+                  webView.setWebViewClient(new WebViewClient());
+                  webView.loadUrl("file:///android_asset/index.html");
+                  setContentView(webView);
+              }
+          }
+          EOF
 
-      - name: Grant Execute Permission for Gradle
-        run: chmod +x template/gradlew
+          # إنشاء ملفات إعدادات بناء Gradle الأساسية تلقائياً
+          echo "include ':app'" > settings.gradle
+          echo "buildscript { repositories { google(); mavenCentral() }; dependencies { classpath 'com.android.tools.build:gradle:8.1.0' } }" > build.gradle
+          echo "plugins { id 'com.android.application' }; android { compileSdk 34; defaultConfig { applicationId 'com.example.webview'; minSdk 21; targetSdk 34; versionCode 1; versionName '1.0' } }" > app/build.gradle
+          
+          # تحميل أداة Gradle الجاهزة للبناء والتجميع
+          gradle wrapper --gradle-version 8.1.1
+          chmod +x gradlew
 
       - name: Build Android APK
-        run: |
-          cd template
-          ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleDebug --no-daemon
 
       - name: Upload Real APK
         uses: actions/upload-artifact@v4
         with:
           name: Real-Android-App
-          path: template/app/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
