@@ -1,0 +1,33 @@
+name: Build Android App
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Capacitor & Build App
+        run: |
+          npm init -y
+          npm install @capacitor/core @capacitor/cli
+          npx cap init "Daftar App" "com.ostoraazoozy.daftar" --web-dir=.
+          npm install @capacitor/android
+          npx cap add android
+          npx cap sync android
+
+      - name: Build Android APK
+        run: |
+          cd android && ./gradlew assembleDebug
+
+      - name: Upload APK Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-android-app
+          path: android/app/build/outputs/apk/debug/app-debug.apk
